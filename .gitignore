@@ -1,0 +1,8 @@
+__pycache__/**
+env/**
+schemas/__pycache__/**
+connection/__pycache__/**
+models/__pycache__/**
+path/__pycache__/**
+cahier_charge.pdf
+dal/__pycache__/**
