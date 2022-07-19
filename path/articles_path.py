@@ -25,6 +25,6 @@ def get_articles(db:Session = Depends(get_db)):
 
 @path.get("/articles/{uuid}")
 def get_articles_by_uuid(uuid:str, db:Session = Depends(get_db)):
-    return articles_dal.get_articles_by_uuid(uuid,db)
+    return articles_dal.get_articles_by_uuid(uuid, db)
 
 

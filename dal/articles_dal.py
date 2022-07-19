@@ -38,8 +38,8 @@ def delete_articles(uuid:str, db:Session = Depends(get_db)):
 def get_articles(db:Session = Depends(get_db)):
     return db.query(article_model.article_model).all()
 
-def get_articles_by_uuid(uuid:int, db:Session = Depends(get_db)):
-    article = db.query(article_model.article_model).filter(article_model.article_model.uuid == uuid)
+def get_articles_by_uuid(uuid:str, db:Session = Depends(get_db)):
+    article = db.query(article_model.article_model).filter(article_model.article_model.uuid == uuid).first()
     if not article:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="can't find article, need a valid uuid") 
     return article
