@@ -5,5 +5,5 @@ from connection.connection import Base
 class categorie_model(Base):
     __tablename__ = "categorie"
     id = Column(Integer,primary_key=True, index=True)
-    UUID = Column(String)
+    uuid = Column(String)
     name = Column(String)

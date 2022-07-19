@@ -6,3 +6,7 @@ models/__pycache__/**
 path/__pycache__/**
 cahier_charge.pdf
 dal/__pycache__/**
+.vscode/
+inventory_test.db
+inventory.db
+test_api/**
