@@ -10,3 +10,4 @@ dal/__pycache__/**
 inventory_test.db
 inventory.db
 test_api/**
+util/__pycache__/**

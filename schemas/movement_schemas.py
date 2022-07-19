@@ -1,8 +1,10 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class Movement(BaseModel):
-    id: int
+    id: Optional[int]
     uuid: str
     quantity: int
-    movement_type: str
-    created_at: str
+    type: str
+    created_at: Optional[str]
+
