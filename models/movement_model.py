@@ -11,5 +11,5 @@ class movement_model(Base):
     quantity = Column(Integer)
     type = Column(String)
     created_at = Column(DateTime)
-
+    updated_at = Column(DateTime)
 

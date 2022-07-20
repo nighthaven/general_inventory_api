@@ -4,11 +4,12 @@ from sqlalchemy.orm import Session
 from connection.connection import get_db
 from models import article_model
 from schemas.article_schemas import Article
+from util.uuid_generator import uuid_v4
 
 def create_articles(article: Article,db:Session = Depends(get_db)):
     new_article = article_model.article_model(
         id = article.id,
-        uuid = article.uuid,
+        uuid = str(uuid_v4()),
         label = article.label,
         description = article.description,
         reference = article.reference
@@ -19,11 +20,13 @@ def create_articles(article: Article,db:Session = Depends(get_db)):
     return new_article
 
 def edit_articles(uuid:str,article: Article, db:Session = Depends(get_db)):
+    query = db.query(article_model.article_model).filter(article_model.article_model.uuid == uuid)
+    found_article = query.first()
     article.uuid = uuid
-    edition = db.query(article_model.article_model).filter(article_model.article_model.uuid == uuid)
+    article.id = found_article.id
     if not uuid:
         pass
-    edition.update(article.dict())
+    query.update(article.dict())
     db.commit()
     return "article edited successfully"
 

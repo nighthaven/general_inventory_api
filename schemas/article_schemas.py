@@ -3,7 +3,7 @@ from typing import Optional
 
 class Article(BaseModel):
     id: Optional[int]
-    uuid: str
+    uuid: Optional[str]
     label: str
     description: str
     reference:str
