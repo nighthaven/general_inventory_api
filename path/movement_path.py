@@ -12,3 +12,6 @@ path = APIRouter()
 def create_movements(movement: Movement, db:Session = Depends(get_db)):
     return movement_dal.create_movements(movement,db)
 
+@path.put("/movements/{uuid}")
+def edit_movements(uuid:str,movement:Movement, db:Session = Depends(get_db)):
+    return movement_dal.edit_movements(uuid, movement, db)

@@ -18,7 +18,7 @@ def create_articles(article: Article,db:Session = Depends(get_db)):
     db.refresh(new_article)
     return new_article
 
-def edit_articles(uuid:int,article: Article, db:Session = Depends(get_db)):
+def edit_articles(uuid:str,article: Article, db:Session = Depends(get_db)):
     article.uuid = uuid
     edition = db.query(article_model.article_model).filter(article_model.article_model.uuid == uuid)
     if not uuid:
