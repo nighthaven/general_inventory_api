@@ -38,4 +38,7 @@ def delete_category(uuid:str, db:Session = Depends(get_db)):
     db.commit()
     return "article deleted successfully"
 
+def get_category(db:Session = Depends(get_db)):
+    return db.query(category_model.category_model).all()
+
 

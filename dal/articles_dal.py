@@ -28,7 +28,7 @@ def edit_articles(uuid:str,article: Article, db:Session = Depends(get_db)):
         pass
     query.update(article.dict())
     db.commit()
-    return "article edited successfully"
+    return found_article
 
 def delete_articles(uuid:str, db:Session = Depends(get_db)):
     deleting = db.query(article_model.article_model).filter(article_model.article_model.uuid == uuid)

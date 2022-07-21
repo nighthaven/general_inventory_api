@@ -20,3 +20,9 @@ def edit_category(uuid:str, category:Category, db:Session = Depends(get_db)):
 @path.delete("/category/{uuid}")
 def delete_category(uuid:str, db:Session = Depends(get_db)):
     return category_dal.delete_category(uuid,db)
+
+@path.get("/category")
+def get_category(db:Session = Depends(get_db)):
+    categories = category_dal.get_category(db)
+    return [category_response_dto(element) for element in categories]
+
