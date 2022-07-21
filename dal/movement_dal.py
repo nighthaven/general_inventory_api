@@ -49,6 +49,12 @@ def delete_movements(uuid:str, db:Session = Depends(get_db)):
 def get_movements(db:Session = Depends(get_db)):
     return db.query(movement_model.movement_model).all()
 
+def get_movements_by_uuid(uuid:str, db:Session = Depends(get_db)):
+    query = db.query(movement_model.movement_model).filter(movement_model.movement_model.uuid == uuid).first()
+    if not query:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="can't find uuid")
+    return query
+
 
 
 

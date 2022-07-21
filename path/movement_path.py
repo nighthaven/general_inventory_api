@@ -24,3 +24,8 @@ def delete_movements(uuid:str, db:Session = Depends(get_db)):
 @path.get("/movements")
 def get_movements(db:Session = Depends(get_db)):
     return movement_dal.get_movements(db)
+
+@path.get("/movements/{uuid}")
+def get_movements_by_uuid(uuid:str, db:Session = Depends(get_db)):
+    return movement_dal.get_movements_by_uuid(uuid, db)
+
