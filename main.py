@@ -9,6 +9,7 @@ from models import category_model
 from path.articles_path import path as path_article
 from path.movement_path import path as path_movement
 from path.category_path import path as path_category
+from path.location_path import path as path_location
 
 
 app = FastAPI()
@@ -16,6 +17,7 @@ app = FastAPI()
 app.include_router(path_article)
 app.include_router(path_movement)
 app.include_router(path_category)
+app.include_router(path_location)
 
 
 article_model.Base.metadata.create_all(engine)

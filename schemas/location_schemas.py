@@ -1,6 +1,8 @@
+import typing
 from pydantic import BaseModel
+from typing import Optional
 
 class Location(BaseModel):
-    id: int
-    uuid: str
+    id: Optional[int]
+    uuid: Optional[str]
     name: str
