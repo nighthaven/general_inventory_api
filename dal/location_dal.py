@@ -1,4 +1,4 @@
-from fastapi import Depends
+from fastapi import Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from schemas.location_schemas import Location
@@ -29,3 +29,20 @@ def edit_location(uuid:str, location:Location, db:Session = Depends(get_db)):
     db.commit()
     db.refresh(found_query)
     return found_query
+
+def delete_location(uuid:str, db:Session = Depends(get_db)):
+    query = db.query(location_model).filter(location_model.uuid == uuid)
+    if not query:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="can't find uuid")
+    query.delete(synchronize_session=False)
+    db.commit()
+    return "location deleted successfully"
+
+def get_location(db:Session = Depends(get_db)):
+    return db.query(location_model)
+
+def get_location_by_uuid(uuid:str, db:Session = Depends(get_db)):
+    query = db.query(location_model).filter(location_model.uuid == uuid).first()
+    if not query:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="can't find uuid")
+    return query

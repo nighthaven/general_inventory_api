@@ -16,3 +16,16 @@ def create_location(location:Location, db:Session = Depends(get_db)):
 @path.put("/location/{uuid}")
 def edit_location(uuid:str, location:Location, db:Session = Depends(get_db)):
     return Location_response_dto(location_dal.edit_location(uuid, location, db))
+
+@path.delete("/location/{uuid}")
+def delete_location(uuid:str, db:Session = Depends(get_db)):
+    return location_dal.delete_location(uuid, db)
+
+@path.get("/location")
+def get_location(db:Session = Depends(get_db)):
+    locations = location_dal.get_location(db)
+    return [Location_response_dto(element) for element in locations]
+
+@path.get("/location/{uuid}")
+def get_location_by_uuid(uuid:str, db:Session = Depends(get_db)):
+    return Location_response_dto(location_dal.get_location_by_uuid(uuid, db))
