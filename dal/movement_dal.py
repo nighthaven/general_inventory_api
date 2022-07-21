@@ -35,7 +35,8 @@ def edit_movements(uuid:str,movement:Movement, db:Session = Depends(get_db)):
         pass
     query.update(movement.dict())
     db.commit()
-    return "movement edited successfully"
+    db.refresh(found_movement)
+    return found_movement
 
 def delete_movements(uuid:str, db:Session = Depends(get_db)):
     deleting = db.query(movement_model.movement_model).filter(movement_model.movement_model.uuid == uuid)
@@ -43,7 +44,10 @@ def delete_movements(uuid:str, db:Session = Depends(get_db)):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="uuid not found")
     deleting.delete(synchronize_session=False)
     db.commit()
-    return "movement deleted successfully"
+    return "article deleted successfully"
+
+def get_movements(db:Session = Depends(get_db)):
+    return db.query(movement_model.movement_model).all()
 
 
 
