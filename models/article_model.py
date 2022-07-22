@@ -1,4 +1,5 @@
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, ForeignKey
+from sqlalchemy.orm import relationship
 
 from connection.connection import Base
 
@@ -9,3 +10,9 @@ class article_model(Base):
     label = Column(String)
     description = Column(String)
     reference = Column(String)
+    category_id = Column(String, ForeignKey("categorie.id"))
+    location_id = Column(String, ForeignKey("location.id"))
+
+    parent_movement = relationship("movement_model", back_populates="child_article_movement")
+    parent_category = relationship("category_model", back_populates="child_article_category")
+    parent_location = relationship("location_model", back_populates="child_article_location")

@@ -7,4 +7,6 @@ class Article(BaseModel):
     label: str
     description: str
     reference:str
+    category_id: Optional[int]
+    location_id: Optional[int]
     

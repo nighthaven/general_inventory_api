@@ -12,7 +12,9 @@ def create_articles(article: Article,db:Session = Depends(get_db)):
         uuid = str(uuid_v4()),
         label = article.label,
         description = article.description,
-        reference = article.reference
+        reference = article.reference,
+        category_id = article.category_id,
+        location_id = article.location_id
     )
     db.add(new_article)
     db.commit()
