@@ -14,5 +14,5 @@ class movement_model(Base):
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
     article_id = Column(Integer, ForeignKey("article.id"))
-    child_article_movement = relationship("article_model", back_populates="parent_movement")
+    article = relationship("article_model", back_populates="movements")
 

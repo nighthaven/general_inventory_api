@@ -8,4 +8,4 @@ class category_model(Base):
     id = Column(Integer,primary_key=True, index=True)
     uuid = Column(String)
     name = Column(String)
-    child_article_category = relationship("article_model", back_populates="parent_category")
+    articles = relationship("article_model", back_populates="category")

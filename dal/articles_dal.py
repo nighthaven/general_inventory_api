@@ -3,7 +3,9 @@ from sqlalchemy.orm import Session
 
 from connection.connection import get_db
 from models import article_model
+from models import category_model
 from schemas.article_schemas import Article
+from schemas.category_schemas import Category
 from util.uuid_generator import uuid_v4
 
 def create_articles(article: Article,db:Session = Depends(get_db)):

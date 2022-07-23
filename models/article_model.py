@@ -13,6 +13,6 @@ class article_model(Base):
     category_id = Column(String, ForeignKey("categorie.id"))
     location_id = Column(String, ForeignKey("location.id"))
 
-    parent_movement = relationship("movement_model", back_populates="child_article_movement")
-    parent_category = relationship("category_model", back_populates="child_article_category")
-    parent_location = relationship("location_model", back_populates="child_article_location")
+    movements = relationship("movement_model", back_populates="article")
+    category = relationship("category_model", back_populates="articles")
+    location = relationship("location_model", back_populates="articles")
